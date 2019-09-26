@@ -7,12 +7,71 @@
              xmlns:d="http://xamarin.com/schemas/2014/forms/design"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
-             x:Class="XplatCollect.Views.ProfilePage">
-    <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
-    </ContentPage.Content>
+             x:Class="XplatCollect.Views.ProfilePage"
+             xmlns:yummy="clr-namespace:Xamarin.Forms.PancakeView;assembly=Xamarin.Forms.PancakeView">
+    <StackLayout>
+        <Grid Margin="20,20,20,0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="50" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="50" />
+            </Grid.ColumnDefinitions>
+            <Label Text="Jonatas Luiz" Grid.Column="0" FontSize="Large" FontAttributes="Bold" />
+            <yummy:PancakeView HeightRequest="100" WidthRequest="100"  CornerRadius="32" Grid.Column="1">
+                <Button Text="+" HeightRequest="50" />
+            </yummy:PancakeView>
+        </Grid>
+        <Grid Margin="20,0,0,00">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="100" />
+                <RowDefinition Height="150" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="100" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <yummy:PancakeView CornerRadius="32" BackgroundColor="Gray" Grid.Column="0" Grid.Row="0">
+                <Image Source="https://a.thumbs.redditmedia.com/DIgiF5PWb2_NQRUhgowmca2zuuJDXHG54NXiNysMmE8.png" Aspect="Fill" />
+            </yummy:PancakeView>
+            <Grid Grid.Column="1" Grid.Row="0" Margin="20,0,0,0">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Label Text="12 coleções" Grid.Row="0" FontSize="Medium" />
+                <Label Text="23 itens" Grid.Row="1" FontSize="Medium"/>
+            </Grid>
+            <Label Text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum." Grid.Column="0" Grid.ColumnSpan="2" Grid.Row="1" />
+        </Grid>
+        <Label Text="Minhas Coleções" Margin="20,10,0,0" FontSize="Large" FontAttributes="Bold" />
+        <CollectionView SelectionChangedCommand="{Binding ViewCollectionCommand}" SelectionMode="Single" SelectedItem="{Binding CollectionName}">
+            <CollectionView.ItemsSource>
+                <x:Array Type="{x:Type x:String}">
+                    <x:String>Hot Wheels</x:String>
+                    <x:String>Action Figure</x:String>
+                </x:Array>
+            </CollectionView.ItemsSource>
+            <CollectionView.ItemsLayout>
+                <ListItemsLayout Orientation="Vertical" ItemSpacing="16" />
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate>
+                    <ContentView Padding="20,32,32,0">
+                        <yummy:PancakeView HeightRequest="272" CornerRadius="32" BackgroundColor="Gray">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*" />
+                                </Grid.RowDefinitions>
+                                <Image Grid.Row="0" />
+                                <Label Margin="10" Text="{Binding .}" VerticalTextAlignment="End" />
+                            </Grid>
+                        </yummy:PancakeView>
+                    </ContentView>
+
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </StackLayout>
 </ContentPage>
